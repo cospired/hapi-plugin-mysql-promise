@@ -5,8 +5,8 @@
   "main": "lib/index.js",
   "private": false,
   "scripts": {
-    "test": "node --trace-warnings node_modules/.bin/lab -a code -v -t 100",
-    "test-cov-html": "node --trace-warnings node_modules/.bin/lab -a code -vL -t 100 -r html"
+    "test": "node node_modules/.bin/lab -a code -v -t 100",
+    "test-cov-html": "node node_modules/.bin/lab -a code -vL -t 100 -r html"
   },
   "repository": {
     "type": "git",
