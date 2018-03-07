@@ -5,8 +5,8 @@
   "main": "lib/index.js",
   "private": false,
   "scripts": {
-    "test": "lab -a code -v -t 100",
-    "test-cov-html": "lab -a code -vL -t 100 -r html"
+    "test": "node --trace-warnings node_modules/.bin/lab -a code -v -t 100",
+    "test-cov-html": "node --trace-warnings node_modules/.bin/lab -a code -vL -t 100 -r html"
   },
   "repository": {
     "type": "git",
@@ -25,7 +25,7 @@
   "homepage": "https://github.com/Salesflare/hapi-plugin-mysql",
   "dependencies": {
     "hoek": "^4.2.1",
-    "mysql": "~2.15.0"
+    "mysql2": "^1.5.2"
   },
   "peerDependencies": {
     "hapi": ">=9.x.x"
