@@ -466,7 +466,7 @@ describe('Hapi MySQL', () => {
                 return server.start((err) => {
 
                     expect(err).to.not.exist();
-                    expect(server.registrations['hapi-plugin-mysql']).to.be.an.object();
+                    expect(server.registrations['@cospired/hapi-plugin-mysql-promise']).to.be.an.object();
 
                     return server.stop(done);
                 });
@@ -494,7 +494,7 @@ describe('Hapi MySQL', () => {
                 return server.initialize((err) => {
 
                     expect(err).to.not.exist();
-                    expect(server._registrations['hapi-plugin-mysql']).to.be.an.object();
+                    expect(server._registrations['@cospired/hapi-plugin-mysql-promise']).to.be.an.object();
 
                     return server.stop(done);
                 });
