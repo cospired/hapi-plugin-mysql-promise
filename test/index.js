@@ -60,26 +60,23 @@ describe('Hapi MySQL', () => {
 
         let server;
 
-        beforeEach((done) => {
+        beforeEach(() => {
             connectWorking = true;
             server = new Hapi.Server();
             server.connection();
-            done();
         });
 
-        afterEach( (done) => {
+        afterEach( () => {
             connectWorking = true;
             if(server) {
                 server.stop((err) => {
                     // expect(err).to.not.exist();
-                    done();
                 });
             } else {
-                done();
             }
         });
 
-        it('Makes a db connection that works', (done) => {
+        it('Makes a db connection that works', () => {
 
             const options = Hoek.clone(internals.dbOptions);
 
@@ -106,12 +103,11 @@ describe('Hapi MySQL', () => {
                     expect(response.result, 'success result').to.equal('query ok');
                     expect(response.statusCode, 'success status code').to.equal(200);
 
-                    done();
                 });
             });
         });
 
-        it('handle not getting a pool', (done) => {
+        it('handle not getting a pool', () => {
 
             const options = Hoek.clone(internals.dbOptions);
             options.pool = false;
@@ -123,11 +119,10 @@ describe('Hapi MySQL', () => {
 
                 expect(err).to.exist();
 
-                done();
             });
         });
 
-        it('handle db connection errors', (done) => {
+        it('handle db connection errors', () => {
 
             const options = Hoek.clone(internals.dbOptions);
             options.connect = false;
@@ -139,11 +134,10 @@ describe('Hapi MySQL', () => {
 
                 expect(err).to.equal('connection error');
 
-                done();
             });
         });
 
-        it('handle db disconnection errors', (done) => {
+        it('handle db disconnection errors', () => {
 
             const options = Hoek.clone(internals.dbOptions);
             options.disconnect = false;
@@ -158,13 +152,12 @@ describe('Hapi MySQL', () => {
                 return server.stop((err) => {
                     expect(err).to.equal('pool end error');
                     server = null;
-                    done();
                 });
 
             });
         });
 
-        it('handle query errors', (done) => {
+        it('handle query errors', () => {
 
             const options = Hoek.clone(internals.dbOptions);
             options.query = false;
@@ -192,12 +185,11 @@ describe('Hapi MySQL', () => {
                     expect(response.result, 'success result').to.equal('query error');
                     expect(response.statusCode, 'success status code').to.equal(400);
 
-                    done();
                 });
             });
         });
 
-        it('handle not getting a connection', (done) => {
+        it('handle not getting a connection', () => {
 
             const options = Hoek.clone(internals.dbOptions);
             options.query = false;
@@ -227,12 +219,11 @@ describe('Hapi MySQL', () => {
                     expect(response.result, 'error result').to.equal('connection error');
                     expect(response.statusCode, 'error status code').to.equal(500);
 
-                    done();
                 });
             });
         });
 
-        it('Quite fail when connection is deleted', (done) => {
+        it('Quite fail when connection is deleted', () => {
 
             const options = Hoek.clone(internals.dbOptions);
 
@@ -263,12 +254,11 @@ describe('Hapi MySQL', () => {
                     expect(response.statusCode, 'post status code').to.equal(200);
                     expect(response.result, 'post result').to.equal('ok');
 
-                    done();
                 });
             });
         });
 
-        it('Pool is ended on Server.stop()', (done) => {
+        it('Pool is ended on Server.stop()', () => {
 
             const options = Hoek.clone(internals.dbOptions);
 
@@ -286,7 +276,6 @@ describe('Hapi MySQL', () => {
 
                     return server.stop((err) => {
                         expect(err).to.not.exist();
-                        done();
                     });
                 });
             });
@@ -295,7 +284,7 @@ describe('Hapi MySQL', () => {
 
     describe('Init', () => {
 
-        it('Registers using `init`', (done) => {
+        it('Registers using `init`', () => {
 
             const options = Hoek.clone(internals.dbOptions);
 
@@ -304,11 +293,11 @@ describe('Hapi MySQL', () => {
 
                 expect(err).to.not.exist();
 
-                return MySQLPlugin.stop(done);
+                return MySQLPlugin.stop();
             });
         });
 
-        it('Registers with calling `init` and then using it as a plugin with no options', (done) => {
+        it('Registers with calling `init` and then using it as a plugin with no options', () => {
 
             const options = Hoek.clone(internals.dbOptions);
 
@@ -326,12 +315,12 @@ describe('Hapi MySQL', () => {
 
                     expect(err).to.not.exist();
 
-                    return server.stop(done);
+                    return server.stop();
                 });
             });
         });
 
-        it('Errors on registering twice', (done) => {
+        it('Errors on registering twice', () => {
 
             const options = Hoek.clone(internals.dbOptions);
 
@@ -344,23 +333,22 @@ describe('Hapi MySQL', () => {
 
                     expect(err).to.be.an.error('There is already a pool configured');
 
-                    return MySQLPlugin.stop(done);
+                    return MySQLPlugin.stop();
                 });
             });
         });
 
-        it('Errors on registering with no host option', (done) => {
+        it('Errors on registering with no host option', () => {
 
             const MySQLPlugin = require('../');
             return MySQLPlugin.init({}, (err) => {
 
                 expect(err).to.be.an.error('Options must include host property');
 
-                return done();
             });
         });
 
-        it('Should not throw if stop has no parameters', (done) => {
+        it('Should not throw if stop has no parameters', () => {
 
             const options = Hoek.clone(internals.dbOptions);
             options.disconnect = false;
@@ -372,11 +360,10 @@ describe('Hapi MySQL', () => {
 
                 MySQLPlugin.stop();
 
-                done();
             });
         });
 
-        it('Errors when options are wrong', (done) => {
+        it('Errors when options are wrong', () => {
 
             const options = Hoek.clone(internals.dbOptions);
 
@@ -385,13 +372,13 @@ describe('Hapi MySQL', () => {
 
                 expect(err).to.not.exist();
 
-                return MySQLPlugin.stop(done);
+                return MySQLPlugin.stop();
             });
         });
 
         // This test is mostly to hit the fallback part when no callback is provided to `stop`
         // If you know how to let `pool.end` actually error, please do PR ^^
-        it('Errors throws when calling stop with no callback', (done) => {
+        it('Errors throws when calling stop with no callback', () => {
 
             const options = Hoek.clone(internals.dbOptions);
             options.host = 'test';
@@ -402,14 +389,31 @@ describe('Hapi MySQL', () => {
                 expect(err).to.be.an.error();
 
                 MySQLPlugin.stop();
-                return done();
             });
         });
+
+        it('Use server calling stop with an undefined next', (flags) => {
+
+            const options = Hoek.clone(internals.dbOptions);
+
+            const MySQLPlugin = require('../');
+            return MySQLPlugin.init(options, (err) => {
+
+                const server = () => {};
+                const wrapped = flags.mustCall(server, 2);
+                wrapped();
+
+                MySQLPlugin.stop(server);
+                wrapped();
+            });
+        });
+
+
     });
 
     describe('Extras', () => {
 
-        it('Exposes getDb on the server', (done) => {
+        it('Exposes getDb on the server', () => {
 
             const options = Hoek.clone(internals.dbOptions);
 
@@ -427,24 +431,23 @@ describe('Hapi MySQL', () => {
                 return server.getDb()
                     .then( conn => {
                         expect(conn, 'db').to.exist();
-                        return server.stop(done);
+                        return server.stop();
                     })
                     .catch( err => {
                         expect(err).to.not.exist();
-                        return server.stop(done);
+                        return server.stop();
                     });
             });
         });
 
-        it('Exposes `getConnection` on the module', (done) => {
+        it('Exposes `getConnection` on the module', () => {
 
             const MySQLPlugin = require('../');
             expect(MySQLPlugin.getConnection).to.be.a.function();
 
-            return done();
         });
 
-        it('Only registers once', (done) => {
+        it('Only registers once', () => {
 
             const options = Hoek.clone(internals.dbOptions);
 
@@ -468,12 +471,12 @@ describe('Hapi MySQL', () => {
                     expect(err).to.not.exist();
                     expect(server.registrations['@cospired/hapi-plugin-mysql-promise']).to.be.an.object();
 
-                    return server.stop(done);
+                    return server.stop();
                 });
             });
         });
 
-        it('Works on connectionless servers', (done) => {
+        it('Works on connectionless servers', () => {
 
             const options = Hoek.clone(internals.dbOptions);
 
@@ -496,7 +499,7 @@ describe('Hapi MySQL', () => {
                     expect(err).to.not.exist();
                     expect(server._registrations['@cospired/hapi-plugin-mysql-promise']).to.be.an.object();
 
-                    return server.stop(done);
+                    return server.stop();
                 });
             });
         });
