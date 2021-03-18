@@ -5,8 +5,8 @@
   "main": "lib/index.js",
   "private": false,
   "scripts": {
-    "test": "node node_modules/.bin/lab -a @hapi/code -v -t 95",
-    "test-cov-html": "node node_modules/.bin/lab -a code -vL -t 95 -r html"
+    "test": "lab -v -t 100",
+    "test-cov-html": "lab -vL -t 100 -r html"
   },
   "repository": {
     "type": "git",
