@@ -5,8 +5,8 @@
   "main": "lib/index.js",
   "private": false,
   "scripts": {
-    "test": "node node_modules/.bin/lab -a code -v -t 100",
-    "test-cov-html": "node node_modules/.bin/lab -a code -vL -t 100 -r html"
+    "test": "node node_modules/.bin/lab -a @hapi/code -v -t 95",
+    "test-cov-html": "node node_modules/.bin/lab -a code -vL -t 95 -r html"
   },
   "repository": {
     "type": "git",
@@ -31,7 +31,7 @@
   "homepage": "https://github.com/cospired/hapi-plugin-mysql-promise",
   "dependencies": {
     "hoek": "^4.2.1",
-    "mysql2": "^1.6.1"
+    "mysql2": "^1.7.0"
   },
   "peerDependencies": {
     "hapi": ">=9.x.x"
@@ -40,8 +40,8 @@
     "node": ">=8.0.0"
   },
   "devDependencies": {
-    "code": "4.x.x",
-    "hapi": "16.x.x",
-    "lab": "^16.1.0"
+    "@hapi/code": "^6.0.0",
+    "@hapi/lab": "^24.0.0",
+    "hapi": "16.x.x"
   }
 }
