@@ -1,7 +1,7 @@
 'use strict';
 
-const Lab = require('lab');
-const Code = require('code');
+const Lab = require('@hapi/lab');
+const Code = require('@hapi/code');
 const Hapi = require('hapi');
 const Hoek = require('hoek');
 
@@ -408,6 +408,22 @@ describe('Hapi MySQL', () => {
             });
         });
 
+        it('Should not use server calling stop with a defined next', (flags) => {
+
+            const options = Hoek.clone(internals.dbOptions);
+
+            const MySQLPlugin = require('../');
+            return MySQLPlugin.init(options, (err) => {
+
+                const server = () => {};
+                const next = () => {};
+                const wrapped = flags.mustCall(next, 2);
+                wrapped();
+
+                MySQLPlugin.stop(server, next);
+                wrapped();
+            });
+        });
 
     });
 
