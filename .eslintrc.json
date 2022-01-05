@@ -1,0 +1,14 @@
+{
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "@cospired/eslint-config-base"
+    ],
+    "rules": {
+      "no-console": "off"
+    },
+    "settings": {
+      "import/resolver": "node"
+    }
+  }

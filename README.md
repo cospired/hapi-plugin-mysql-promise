@@ -1,4 +1,8 @@
-# hapi-plugin-mysql-promise [![Build Status](https://travis-ci.org/cospired/hapi-plugin-mysql-promise.svg?branch=master)](https://travis-ci.org/cospired/hapi-plugin-mysql-promise)
+[![Build Status](https://travis-ci.org/cospired/hapi-plugin-mysql-promise.svg?branch=master)](https://travis-ci.org/cospired/hapi-plugin-mysql-promise)
+[![npm version](https://badge.fury.io/js/%40cospired%2Fhapi-plugin-mysql-promise.svg)](https://badge.fury.io/js/%40cospired%2Fhapi-plugin-mysql-promise)
+[![Maintainability](https://api.codeclimate.com/v1/badges/74c3d563aef39317b4df/maintainability)](https://codeclimate.com/github/cospired/hapi-plugin-mysql-promise/maintainability)
+
+# hapi-plugin-mysql-promise
 
 > hapi plugin for MySQL
 

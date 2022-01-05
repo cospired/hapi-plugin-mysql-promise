@@ -2,7 +2,7 @@
 
 const Lab = require('@hapi/lab');
 const Code = require('@hapi/code');
-const Hapi = require('hapi');
+const Hapi = require('@hapi/hapi');
 const Hoek = require('@hapi/hoek');
 
 const lab = exports.lab = Lab.script();
@@ -429,12 +429,11 @@ describe('Hapi MySQL', () => {
 
     describe('Extras', () => {
 
-        it('Exposes getDb on the server', () => {
+        it.only('Exposes getDb on the server', () => {
 
             const options = Hoek.clone(internals.dbOptions);
 
             const server = new Hapi.Server();
-            server.connection();
 
             return server.register({
                 register: require('../'),

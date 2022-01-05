@@ -5,7 +5,13 @@
   "main": "lib/index.js",
   "private": false,
   "scripts": {
+    "lint:ci": "npm run lint -- --max-warnings=0",
+    "lint:cli": "eslint --format node_modules/eslint-clang-formatter",
+    "lint:fix": "eslint --fix --format node_modules/eslint-clang-formatter lib",
+    "lint:vsc": "eslint lib",
+    "lint": "eslint --format node_modules/eslint-clang-formatter lib",
     "npm:update": "npm-check -u",
+    "postversion": "git push --follow-tags",
     "test": "lab -v -t 100",
     "test-cov-html": "lab -vL -t 100 -r html"
   },
@@ -32,18 +38,20 @@
   "homepage": "https://github.com/cospired/hapi-plugin-mysql-promise",
   "dependencies": {
     "@hapi/hoek": "^9.1.1",
-    "mysql2": "^1.7.0"
+    "mysql2": "^2.2.5"
   },
   "peerDependencies": {
-    "hapi": ">=9.x.x"
+    "@hapi/hapi": "^19.x.x"
   },
   "engines": {
     "node": ">=12.0.0"
   },
   "devDependencies": {
+    "@cospired/eslint-config-base": "^4.0.0",
     "@hapi/code": "^8.0.3",
+    "@hapi/hapi": "20.1.2",
     "@hapi/lab": "^24.0.0",
-    "hapi": "16.x.x",
+    "eslint-clang-formatter": "^1.3.0",
     "npm-check": "^5.9.2"
   }
 }
