@@ -31,7 +31,7 @@
   "homepage": "https://github.com/cospired/hapi-plugin-mysql-promise",
   "dependencies": {
     "hoek": "^4.2.1",
-    "mysql2": "^1.7.0"
+    "mysql2": "^2.3.3"
   },
   "peerDependencies": {
     "hapi": ">=9.x.x"
